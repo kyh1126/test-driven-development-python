@@ -23,10 +23,10 @@ class TestCaseTest(TestCase):
         result = TestResult()
         result.testStarted()
         result.testFailed()
-        assert "1 run, 1 failed" != result.summary()
+        assert "1 run, 1 failed" == result.summary()
 
 
-TestCaseTest("testTemplateMethod").run()
-TestCaseTest("testResult").run()
-TestCaseTest("testFailedResult").run()
+print("testTemplateMethod:", TestCaseTest("testTemplateMethod").run().summary())
+print("testResult:", TestCaseTest("testResult").run().summary())
+print("testFailedResult:", TestCaseTest("testFailedResult").run().summary())
 print("testFailedResultFormatting:", TestCaseTest("testFailedResultFormatting").run().summary())
