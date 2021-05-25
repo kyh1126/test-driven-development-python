@@ -11,13 +11,20 @@ class ResultListener(object):
         self.count += 1
 
 
+# 2: 이벤트 리스너를 위해 별도의 객체를 만드는 대신 테스트 케이스 자체를 리스너로 쓴다.
 class ResultListenerTest:
+    def __init__(self):
+        self.count = 0
+
     def testNotification(self):
         result = TestResult()
-        listener = ResultListener()
-        result.addListener(listener)
+        result.addListener(self)
         WasRun("testMethod").run(result)
-        assert 1 == listener.count
+        assert 1 == self.count
+
+    def startTest(self):
+        self.count += 1
+        print("test started")
 
 
 ResultListenerTest().testNotification()
